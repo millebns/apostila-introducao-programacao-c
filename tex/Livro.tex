@@ -1,0 +1,250 @@
+% ===================== LIVRO: INTRODUÇÃO À PROGRAMAÇÃO EM C =====================
+\documentclass[a4paper,11pt]{book}
+
+% ===================== PACOTES =====================
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome5}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage[table]{xcolor}          % tabelas coloridas
+\usepackage{listings}               % código fonte
+\usepackage{upquote}                % aspas retas em verbatim
+\usepackage{tcolorbox}              % caixas coloridas
+\tcbuselibrary{skins,breakable}
+\usepackage{titlesec}               % formatação de títulos
+\usepackage{fancyhdr}               % cabeçalho/rodapé
+\usepackage{enumitem}               % listas
+\usepackage{array}                  % tabelas
+\usepackage{tabularx}               % tabelas de largura ajustável
+\usepackage{booktabs}               % linhas em tabelas
+\usepackage{hyperref}               % links
+\usepackage{amsmath}                % matemática
+\usepackage{makeidx}                % índice (opcional)
+
+% ===================== CORES (TEMA) =====================
+\definecolor{azulPrincipal}{HTML}{2E5C8A}
+\definecolor{azulClaro}{HTML}{EAF2FB}
+\definecolor{verdeC}{HTML}{2E8B57}
+\definecolor{verdeClaro}{HTML}{E6F5EC}
+\definecolor{laranja}{HTML}{E2711D}
+\definecolor{laranjaClaro}{HTML}{FDECE0}
+\definecolor{vermelho}{HTML}{C0392B}
+\definecolor{vermelhoClaro}{HTML}{FBEAE8}
+\definecolor{roxo}{HTML}{6C3483}
+\definecolor{roxoClaro}{HTML}{F1E6F7}
+\definecolor{cinzaCodigo}{HTML}{F4F4F4}
+\definecolor{cinzaBorda}{HTML}{CCCCCC}
+\definecolor{cinzaTexto}{HTML}{555555}
+
+% ===================== HYPERLINKS =====================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=azulPrincipal,
+    urlcolor=azulPrincipal,
+    pdftitle={Apostila de Programação em C},
+    pdfauthor={IP - Introdução à Programação}
+}
+
+% ===================== CABEÇALHO/RODAPÉ =====================
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{azulPrincipal}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[R]{\small\color{cinzaTexto}Introdução à Programação $\mid$ Linguagem C $\mid$ Profa. Ma. Camille Braga}
+\fancyfoot[C]{\small\color{cinzaTexto} Página \thepage}
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \fancyfoot[C]{\small\color{cinzaTexto} Página \thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ===================== FORMATAÇÃO DE TÍTULOS =====================
+% Capítulo
+\titleformat{\chapter}[display]
+  {\huge\bfseries\color{azulPrincipal}}
+  {\chaptertitlename\ \thechapter}{0.8em}{}
+  [{\color{azulPrincipal}\titlerule[1.5pt]}]
+
+% Seção
+\titleformat{\section}
+  {\Large\bfseries\color{azulPrincipal}}
+  {\thesection}{0.6em}{}
+  [{\color{azulPrincipal}\titlerule[1.2pt]}]
+
+% Subseção
+\titleformat{\subsection}
+  {\large\bfseries\color{verdeC}}
+  {\thesubsection}{0.6em}{}
+
+% Subsubseção
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\itshape\color{roxo}}
+  {\thesubsubsection}{0.6em}{}
+
+% ===================== ESTILO DE CÓDIGO C =====================
+\lstdefinestyle{codigoC}{
+    language=C,
+    backgroundcolor=\color{cinzaCodigo},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{azulPrincipal}\bfseries,
+    commentstyle=\color{verdeC}\itshape,
+    stringstyle=\color{laranja},
+    numberstyle=\tiny\color{cinzaTexto},
+    numbers=left,
+    numbersep=8pt,
+    frame=single,
+    rulecolor=\color{cinzaBorda},
+    framerule=0.6pt,
+    xleftmargin=1.2em,
+    xrightmargin=0.4em,
+    breaklines=true,
+    showstringspaces=false,
+    tabsize=4,
+    framexleftmargin=1.5em,
+}
+\lstset{style=codigoC}
+
+% ===================== CAIXAS COLORIDAS (tcolorbox) =====================
+% Objetivos do capítulo
+\newtcolorbox{objetivos}{
+    enhanced, breakable,
+    colback=azulClaro, colframe=azulPrincipal,
+    boxrule=0.8pt, leftrule=4pt,
+    arc=2pt, outer arc=2pt,
+    title={Objetivos do Capítulo},
+    fonttitle=\bfseries\color{white},
+    coltitle=white,
+    colbacktitle=azulPrincipal,
+    % attach boxes to title={left, yshift=-2mm, xshift=2mm}, % REMOVIDA
+}
+
+% Atenção
+\newtcolorbox{atencao}[1][Atenção]{
+    enhanced, breakable,
+    colback=laranjaClaro, colframe=laranja,
+    boxrule=0.8pt, leftrule=4pt,
+    arc=2pt, outer arc=2pt,
+    title={#1},
+    fonttitle=\bfseries\color{white},
+    coltitle=white,
+    colbacktitle=laranja,
+}
+
+% Dica
+\newtcolorbox{dica}[1][Dica]{
+    enhanced, breakable,
+    colback=verdeClaro, colframe=verdeC,
+    boxrule=0.8pt, leftrule=4pt,
+    arc=2pt, outer arc=2pt,
+    title={#1},
+    fonttitle=\bfseries\color{white},
+    coltitle=white,
+    colbacktitle=verdeC,
+}
+
+% Importante / Regra
+\newtcolorbox{importante}[1][Importante]{
+    enhanced, breakable,
+    colback=roxoClaro, colframe=roxo,
+    boxrule=0.8pt, leftrule=4pt,
+    arc=2pt, outer arc=2pt,
+    title={#1},
+    fonttitle=\bfseries\color{white},
+    coltitle=white,
+    colbacktitle=roxo,
+}
+
+% Níveis de exercício
+\newtcolorbox{exfacil}{
+    enhanced, breakable,
+    colback=verdeClaro, colframe=verdeC,
+    boxrule=0.8pt, arc=2pt,
+    title={Nível Fácil},
+    fonttitle=\bfseries\color{white}, coltitle=white, colbacktitle=verdeC,
+}
+\newtcolorbox{exmedio}{
+    enhanced, breakable,
+    colback=laranjaClaro, colframe=laranja,
+    boxrule=0.8pt, arc=2pt,
+    title={Nível Médio},
+    fonttitle=\bfseries\color{white}, coltitle=white, colbacktitle=laranja,
+}
+\newtcolorbox{exdificil}{
+    enhanced, breakable,
+    colback=vermelhoClaro, colframe=vermelho,
+    boxrule=0.8pt, arc=2pt,
+    title={Nível Difícil},
+    fonttitle=\bfseries\color{white}, coltitle=white, colbacktitle=vermelho,
+}
+\newtcolorbox{destacado}{
+    enhanced, breakable,
+    colback=azulClaro, colframe=azulPrincipal,
+    boxrule=0.8pt, arc=2pt,
+}
+% Resumo
+\newtcolorbox{resumo}{
+    enhanced, breakable,
+    colback=azulClaro!50, colframe=azulPrincipal,
+    boxrule=0.8pt, leftrule=4pt,
+    arc=2pt,
+    title={Resumo do Capítulo},
+    fonttitle=\bfseries\color{white},
+    coltitle=white,
+    colbacktitle=azulPrincipal,
+}
+
+% ===================== LISTAS =====================
+\setlist[enumerate,1]{label=\textbf{\arabic*.}, leftmargin=1.6em}
+\setlist[itemize,1]{leftmargin=1.6em}
+
+% ===================== COMANDO AUXILIAR PARA TABELAS =====================
+\newcommand{\linhaPar}{\rowcolor{azulClaro!60}}
+
+% ===================== ÍNDICE =====================
+\makeindex
+
+\begin{document}
+
+% ===================== PÁGINA DE TÍTULO =====================
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+
+    {\color{azulPrincipal}\Huge\bfseries Introdução à Programação}\\[1cm]
+    {\color{azulPrincipal}\Large\bfseries Linguagem C}\\[2cm]
+
+    {\color{verdeC}\rule{0.5\textwidth}{1.5pt}}\\[1cm]
+
+{\Large\textbf{Profa. Ma. Camille Braga}}\\[0.2cm]
+    {\normalsize\color{cinzaTexto} Mestre em Ciências Computacionais e Modelagem Matemática}\\[0.5cm]
+    {\large\today}
+
+    \vfill
+
+    {\footnotesize\color{cinzaTexto} Material didático para o curso de Introdução à Programação}
+     {\footnotesize\color{cinzaTexto} Camille Braga}
+\end{titlepage}
+
+% ===================== SUMÁRIO =====================
+\frontmatter
+\tableofcontents
+
+\mainmatter
+
+% ===================== CAPÍTULOS =====================
+\include{cap00}
+%\include{cap01-variaveis}
+%\include{cap02-condicionais}
+%\include{cap03-repeticao}
+%\include{cap04}
+%\include{cap05-funcao}
+ %\include{cap06-recursao}
+ %\include{cap07-ponte}
+% ... (acrescente os demais capítulos conforme forem criados)
+
+\backmatter
+% \include{glossario}
+% \include{solucoes}
+
+\end{document}
